@@ -32,7 +32,7 @@
       {
         "metrics_calculate": "@CHECKOUT@/tests/calculate.sh",
         "metrics_compare": "@CHECKOUT@/tests/compare.sh",
-        "output_metrics": "/.mounts/labs/gsiprojects/gsi/nanopore_data/MMinden_9161/output_expectation/filterFastq_MMinden_9161_FASTQ.metrics",
+        "output_metrics": "/.mounts/labs/gsi/testdata/nanoporeFilterFastq/output_expectation/filterFastq_MMinden_9161_FASTQ.metrics",
         "type": "script"
       }
     ]
