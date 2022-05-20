@@ -8,8 +8,6 @@
             "nanoporeFilterFastq.normal": "MMinden_9161",
             "nanoporeFilterFastq.samplefile" : "/.mounts/labs/gsiprojects/gsi/nanopore_data/MMinden_9161/MMinden_9161/fastq/MMinden_9161.fastq.gz",
             "nanoporeFilterFastq.smkConfig.generateConfig_modules": "nanopore-sv-analysis/20220505",
-            "nanoporeFilterFastq.smkConfig.generateConfig.jobMemory": null,
-            "nanoporeFilterFastq.smkConfig.generateConfig.timeout":null, 
             "nanoporeFilterFastq.filterFastq.modules": "nanopore-sv-analysis/20220505",
             "nanoporeFilterFastq.filterFastq.timeout": null,
             "nanoporeFilterFastq.filterFastq.jobMemory": null  
