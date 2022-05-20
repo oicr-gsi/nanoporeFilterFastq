@@ -1,40 +1,37 @@
 [
-  {
-    "id": "TEST_MMinden_9161_FASTQ_INPUT",
-    "description": "runs the nanoporeFilterFastq workflow, with nanopore fastq as input",
-    "arguments": {
-      "nanoporeFilterFastq.sample": "MMinden_9161",
-      "nanoporeFilterFastq.tumor": "MMinden_9161",
-      "nanoporeFilterFastq.normal": "MMinden_9161",
-      "nanoporeFilterFastq.samplefile" : "/.mounts/labs/gsiprojects/gsi/nanopore_data/MMinden_9161/MMinden_9161/fastq/MMinden_9161.fastq.gz",
-      "nanoporeFilterFastq.smkConfig.generateConfig_modules": "nanopore-sv-analysis/20220505",
-      "nanoporeFilterFastq.smkConfig.generateConfig.jobMemory": null,
-      "nanoporeFilterFastq.smkConfig.generateConfig.timeout":null, 
-      "nanoporeFilterFastq.filterFastq.modules": "nanopore-sv-analysis/20220505",
-      "nanoporeFilterFastq.filterFastq.timeout": null,
-      "nanoporeFilterFastq.filterFastq.jobMemory": null   
-    },
-    "engineArguments": {
-      "write_to_cache": false,
-      "read_from_cache": false
-    },
-    "metadata": {
-      "nanoporeFilterFastq.filteredFastq": {
-        "contents": [
-          {
-            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_nanoporeFilterFastq_TEST_MMinden_9161_FASTQ_INPUT@JENKINSID@"
-          }
-        ],
-        "type": "ALL"
-      }     
-   },
-    "validators": [
-      {
-        "metrics_calculate": "@CHECKOUT@/tests/calculate.sh",
-        "metrics_compare": "@CHECKOUT@/tests/compare.sh",
-        "output_metrics": "/.mounts/labs/gsi/testdata/nanoporeFilterFastq/output_expectation/filterFastq_MMinden_9161_FASTQ.metrics",
-        "type": "script"
-      }
-    ]
-  }
+    {
+        "id": "TEST_MMinden_9161_FASTQ_INPUT",
+        "description": "runs the nanoporeFilterFastq workflow, with nanopore fastq as input",
+        "arguments": {
+            "nanoporeFilterFastq.sample": "MMinden_9161",
+            "nanoporeFilterFastq.tumor": "MMinden_9161",
+            "nanoporeFilterFastq.normal": "MMinden_9161",
+            "nanoporeFilterFastq.samplefile" : "/.mounts/labs/gsiprojects/gsi/nanopore_data/MMinden_9161/MMinden_9161/fastq/MMinden_9161.fastq.gz",
+            "nanoporeFilterFastq.smkConfig.generateConfig_modules": "nanopore-sv-analysis/20220505",
+            "nanoporeFilterFastq.smkConfig.generateConfig.jobMemory": null,
+            "nanoporeFilterFastq.smkConfig.generateConfig.timeout":null, 
+            "nanoporeFilterFastq.filterFastq.modules": "nanopore-sv-analysis/20220505",
+            "nanoporeFilterFastq.filterFastq.timeout": null,
+            "nanoporeFilterFastq.filterFastq.jobMemory": null  
+        },
+        "engineArguments": {},
+        "metadata": {
+            "nanoporeFilterFastq.filteredFastq": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_nanoporeFilterFastq_TEST_MMinden_9161_FASTQ_INPUT_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            }
+        },
+        "validators": [
+            {
+                "metrics_calculate": "@CHECKOUT@/tests/calculate.sh",
+                "metrics_compare": "@CHECKOUT@/tests/compare.sh",
+                "output_metrics": "/.mounts/labs/gsiprojects/gsi/nanopore_data/MMinden_9161/output_expectation/filterFastq_MMinden_9161_FASTQ.metrics",
+                "type": "script"
+            }
+        ]
+    }
 ]
