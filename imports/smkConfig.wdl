@@ -1,87 +1,91 @@
 version 1.0
-import "imports/smkConfig.wdl" as smkConfig
-
-workflow nanoporeFilterFastq {
+workflow smkConfig {
     input {
         String sample
         String normal
         String tumor
         String samplefile
+        String generateConfig_modules
     }
     parameter_meta {
-        sample: "name of sample"
+        sample: "name of all sample"
         normal: "name of the normal sample"
         tumor: "name of the tumor sample"
         samplefile: "sample file"
+        generateConfig_modules: "modules needed to run generateConfig"
     }
 
-    call smkConfig.smkConfig{
+    call generateConfig{
         input:
-        sample=sample,
+        sample = sample,
         normal = normal,
         tumor = tumor,
-        samplefile = samplefile    
-    }
-
-    call filterFastq {
-        input:
-        config = smkConfig.config,
-        sample = sample
+        samplefile = samplefile,
+        modules = generateConfig_modules
+           
     }
 
     output {
-        File filteredFastq  = filterFastq.filteredFastq
+        File config  = generateConfig.config
         }
 
     meta {
      author: "Gavin Peng"
      email: "gpeng@oicr.on.ca"
-     description: "nanoporFilterFastq, workflow that generates filtered fast.qz file from input of nanopore fastq files, a wrapper of the workflow https://github.com/mike-molnar/nanopore-SV-analysis"
-     dependencies: [
+     description: "smkConfig, workflow that generates config.yaml file for snakemake to run"
+     dependencies: 
       {
         name: "nanopore_sv_analysis/20220505",
         url: "https://gitlab.oicr.on.ca/ResearchIT/modulator/-/blob/master/code/gsi/70_nanopore_sv_analysis.yaml"
       }
-     ]
+
      output_meta: {
-       filteredFastq : "output from rule filter_fastq of the original workflow"
+       config : "config.yaml file for snakemake to run"
      }
     }
 }
-
     # ==========================================================
-    # run the nanopore workflow to generate filtered fastq files
+    #  generate the config.yaml file needed for running snakemake
     # ==========================================================
-    task filterFastq {
+    task generateConfig {
         input {
         String sample
-        File config     
+        String normal
+        String tumor
+        String samplefile      
         String modules
         Int jobMemory = 8
-        Int timeout = 24
-        }
+        Int timeout = 24     
+   }
 
         parameter_meta {
+        sample: "name of all sample"
+        normal: "name of the normal sample"
+        tumor: "name of the tumor sample"
+        samplefile: "sample file"
         jobMemory: "memory allocated for Job"
         modules: "Names and versions of modules"
         timeout: "Timeout in hours, needed to override imposed limits"
         }
-
+ 
         command <<<
         set -euo pipefail
-        cp $NANOPORE_SV_ANALYSIS_ROOT/Snakefile .
-        cp ~{config} .
-        $NANOPORE_SV_ANALYSIS_ROOT/bin/snakemake  -j 8 --rerun-incomplete --keep-going --latency-wait 60  filter_fastq
-        >>> 
-
+        cat <<EOT >> config.yaml
+        workflow_dir: "$NANOPORE_SV_ANALYSIS_ROOT"
+        conda_dir: "$NANOPORE_SV_ANALYSIS_ROOT/bin"
+        samples: [~{sample}]
+        normals: [~{normal}]
+        tumors: [~{tumor}]
+        ~{sample}: ~{samplefile}
+        EOT
+        >>>  
     runtime {
     memory:  "~{jobMemory} GB"
     modules: "~{modules}"
     timeout: "~{timeout}"
     }
-
     output {
-    File filteredFastq = "~{sample}/fastq/~{sample}.fastq.gz"
-    }
+    File config = "config.yaml"
     }
 
+}
