@@ -14,7 +14,10 @@
             "nanoporeFilterFastq.filterFastq.timeout": null,
             "nanoporeFilterFastq.filterFastq.jobMemory": null  
         },
-        "engineArguments": {},
+        "engineArguments": {
+            "write_to_cache": false,
+            "read_from_cache": false
+          },
         "metadata": {
             "nanoporeFilterFastq.filteredFastq": {
                 "contents": [
