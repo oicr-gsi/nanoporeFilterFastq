@@ -11,8 +11,8 @@
       "nanoporeFilterFastq.smkConfig.generateConfig_jobMemory": null,
       "nanoporeFilterFastq.smkConfig.generateConfig_timeout":null, 
       "nanoporeFilterFastq.filterFastq.modules": "nanopore-sv-analysis/20220505",
-      "nanoporeFilterFastq.filterFastq_timeout": null,
-      "nanoporeFilterFastq.filterFastq_jobMemory": null   
+      "nanoporeFilterFastq.filterFastq.timeout": null,
+      "nanoporeFilterFastq.filterFastq.jobMemory": null   
     },
     "engineArguments": {
       "write_to_cache": false,
