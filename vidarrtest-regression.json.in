@@ -4,6 +4,18 @@
     "id": "TEST_MMinden_9161_FASTQ_INPUT",
     "description": "runs the nanoporeFilterFastq workflow, with nanopore fastq as input",
     "arguments": {
+      "nanoporeFilterFastq.fastq": {
+            "contents": {
+              "configuration": "/.mounts/labs/gsi/testdata/nanoporeFilterFastq/input_data/MMinden_9161.fastq.gz",
+              "externalIds": [
+                {
+                  "id": "TEST",
+                  "provider": "TEST"
+                }
+              ]
+            },
+            "type": "EXTERNAL"
+          },
       "nanoporeFilterFastq.sample": "MMinden_9161",
       "nanoporeFilterFastq.tumor": "MMinden_9161",
       "nanoporeFilterFastq.normal": "MMinden_9161",
