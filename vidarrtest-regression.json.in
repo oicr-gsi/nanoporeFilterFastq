@@ -3,7 +3,7 @@
     "id": "TEST_MMinden_9161_FASTQ_INPUT",
     "description": "runs the nanoporeFilterFastq workflow, with nanopore fastq as input",
     "arguments": {
-      "nanoporeFilterFastq.fastq": {
+      "nanoporeFilterFastq.samplefile": {
         "contents": {
             "configuration": "/.mounts/labs/gsiprojects/gsi/nanopore_data/MMinden_9161/MMinden_9161/fastq/MMinden_9161.fastq",
             "externalIds": [
@@ -18,7 +18,6 @@
       "nanoporeFilterFastq.sample": "MMinden_9161",
       "nanoporeFilterFastq.tumor": "MMinden_9161",
       "nanoporeFilterFastq.normal": "MMinden_9161",
-      "nanoporeFilterFastq.samplefile": "/.mounts/labs/gsiprojects/gsi/nanopore_data/MMinden_9161/MMinden_9161/fastq/MMinden_9161.fastq.gz",
       "nanoporeFilterFastq.smkConfig.generateConfig_modules": "nanopore-sv-analysis/20220505",
       "nanoporeFilterFastq.smkConfig.generateConfig_jobMemory": null,
       "nanoporeFilterFastq.smkConfig.generateConfig_timeout":null, 
