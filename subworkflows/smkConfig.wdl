@@ -4,14 +4,14 @@ workflow smkConfig {
         String sample
         String normal
         String tumor
-        String samplefile
+        File samplefile
         String generateConfig_modules
     }
     parameter_meta {
         sample: "name of all sample"
         normal: "name of the normal sample"
         tumor: "name of the tumor sample"
-        samplefile: "sample file"
+        samplefile: "sample file path"
         generateConfig_modules: "modules needed to run generateConfig"
     }
 
@@ -52,7 +52,7 @@ workflow smkConfig {
         String sample
         String normal
         String tumor
-        String samplefile      
+        File samplefile      
         String modules
         Int jobMemory = 8
         Int timeout = 24     
@@ -62,7 +62,7 @@ workflow smkConfig {
         sample: "name of all sample"
         normal: "name of the normal sample"
         tumor: "name of the tumor sample"
-        samplefile: "sample file"
+        samplefile: "sample file path"
         jobMemory: "memory allocated for Job"
         modules: "Names and versions of modules"
         timeout: "Timeout in hours, needed to override imposed limits"

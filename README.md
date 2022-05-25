@@ -37,8 +37,8 @@ Parameter|Value|Default|Description
 #### Optional task parameters:
 Parameter|Value|Default|Description
 ---|---|---|---
-`smkConfig.generateConfig.jobMemory`|Int|8|memory allocated for Job
-`smkConfig.generateConfig.timeout`|Int|24|Timeout in hours, needed to override imposed limits
+`smkConfig.generateConfig_timeout`|Int|24|Timeout in hours, needed to override imposed limits
+`smkConfig.generateConfig_jobMemory`|Int|8|memory allocated for Job
 `filterFastq.jobMemory`|Int|8|memory allocated for Job
 `filterFastq.timeout`|Int|24|Timeout in hours, needed to override imposed limits
 
@@ -48,4 +48,9 @@ Parameter|Value|Default|Description
 Output | Type | Description
 ---|---|---
 `filteredFastq`|File|output from rule filter_fastq of the original workflow
+
+
+## Support
+
+For support, please file an issue on the [Github project](https://github.com/oicr-gsi) or send an email to gsi@oicr.on.ca .
 
