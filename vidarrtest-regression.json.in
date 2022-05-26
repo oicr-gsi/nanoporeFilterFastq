@@ -18,8 +18,8 @@
       "nanoporeFilterFastq.sample": "MMinden_9161",
       "nanoporeFilterFastq.tumor": "MMinden_9161",
       "nanoporeFilterFastq.normal": "MMinden_9161",
-      "nanoporeFilterFastq.generateConfig.jobMemory": null,
-      "nanoporeFilterFastq.generateConfig.timeout":null, 
+      "nanoporeFilterFastq.smkConfig.generateConfig_jobMemory": null,
+      "nanoporeFilterFastq.smkConfig.generateConfig_timeout":null, 
       "nanoporeFilterFastq.filterFastq.modules": "nanopore-sv-analysis/20220505",
       "nanoporeFilterFastq.filterFastq.timeout": null,
       "nanoporeFilterFastq.filterFastq.jobMemory": null   
