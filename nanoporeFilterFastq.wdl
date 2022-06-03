@@ -69,6 +69,7 @@ workflow nanoporeFilterFastq {
 
         command <<<
         set -euo pipefail
+        unset LD_LIBRARY_PATH
         cp $NANOPORE_SV_ANALYSIS_ROOT/Snakefile .
         cp ~{config} .
         $NANOPORE_SV_ANALYSIS_ROOT/bin/snakemake  -j 8 --rerun-incomplete --keep-going --latency-wait 60  filter_fastq
