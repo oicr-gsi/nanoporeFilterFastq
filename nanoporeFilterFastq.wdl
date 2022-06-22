@@ -6,13 +6,13 @@ workflow nanoporeFilterFastq {
         String sample
         String normal
         String tumor
-        String samplefile
+        File samplefile
     }
     parameter_meta {
         sample: "name of sample"
         normal: "name of the normal sample"
         tumor: "name of the tumor sample"
-        samplefile: "sample file"
+        samplefile: "sample file path"
     }
 
     call smkConfig.smkConfig{
@@ -69,6 +69,8 @@ workflow nanoporeFilterFastq {
 
         command <<<
         set -euo pipefail
+        module load nanopore-sv-analysis
+        unset LD_LIBRARY_PATH
         cp $NANOPORE_SV_ANALYSIS_ROOT/Snakefile .
         cp ~{config} .
         $NANOPORE_SV_ANALYSIS_ROOT/bin/snakemake  -j 8 --rerun-incomplete --keep-going --latency-wait 60  filter_fastq

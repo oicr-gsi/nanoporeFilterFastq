@@ -3,14 +3,24 @@
     "id": "TEST_MMinden_9161_FASTQ_INPUT",
     "description": "runs the nanoporeFilterFastq workflow, with nanopore fastq as input",
     "arguments": {
+      "nanoporeFilterFastq.samplefile": {
+        "contents": {
+            "configuration": "/.mounts/labs/gsi/testdata/nanoporeFilterFastq/input_data/MMinden_9161.fastq",
+            "externalIds": [
+                {
+                    "id": "TEST",
+                    "provider": "TEST"
+                }
+            ]
+        },
+        "type": "EXTERNAL"
+      },
       "nanoporeFilterFastq.sample": "MMinden_9161",
       "nanoporeFilterFastq.tumor": "MMinden_9161",
       "nanoporeFilterFastq.normal": "MMinden_9161",
-      "nanoporeFilterFastq.samplefile": "/.mounts/labs/gsiprojects/gsi/nanopore_data/MMinden_9161/MMinden_9161/fastq/MMinden_9161.fastq.gz",
-      "nanoporeFilterFastq.smkConfig.generateConfig_modules": "nanopore-sv-analysis/20220505",
       "nanoporeFilterFastq.smkConfig.generateConfig_jobMemory": null,
       "nanoporeFilterFastq.smkConfig.generateConfig_timeout":null, 
-      "nanoporeFilterFastq.filterFastq.modules": "nanopore-sv-analysis/20220505",
+      "nanoporeFilterFastq.filterFastq.modules": "conda/4.11.0",
       "nanoporeFilterFastq.filterFastq.timeout": null,
       "nanoporeFilterFastq.filterFastq.jobMemory": null   
     },
