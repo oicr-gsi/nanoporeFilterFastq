@@ -1,5 +1,4 @@
 version 1.0
-import "imports/pull_smkConfig.wdl" as smkConfig
 
 workflow nanoporeFilterFastq {
     input {
@@ -15,7 +14,7 @@ workflow nanoporeFilterFastq {
         samplefile: "sample file path"
     }
 
-    call smkConfig.smkConfig{
+    call generateConfig{
         input:
         sample=sample,
         normal = normal,
@@ -25,7 +24,7 @@ workflow nanoporeFilterFastq {
 
     call filterFastq {
         input:
-        config = smkConfig.config,
+        config = generateConfig.config,
         sample = sample
     }
 
@@ -50,6 +49,49 @@ workflow nanoporeFilterFastq {
 }
 
     # ==========================================================
+    #  generate the config.yaml file needed for running snakemake
+    # ==========================================================
+    task generateConfig {
+        input {
+        String sample
+        String normal
+        String tumor
+        File samplefile      
+        Int jobMemory = 8
+        Int timeout = 24 
+   }
+
+        parameter_meta {
+        sample: "name of all sample"
+        normal: "name of the normal sample"
+        tumor: "name of the tumor sample"
+        samplefile: "sample file path"
+        jobMemory: "memory allocated for Job"
+        timeout: "Timeout in hours, needed to override imposed limits"
+        }
+ 
+        command <<<
+        set -euo pipefail
+        cat <<EOT >> config.yaml
+        workflow_dir: "/.mounts/labs/gsi/modulator/sw/Ubuntu18.04/nanopore-sv-analysis-20220505"
+        conda_dir: "/.mounts/labs/gsi/modulator/sw/Ubuntu18.04/nanopore-sv-analysis-20220505/bin"
+        reference_dir: "/.mounts/labs/gsi/modulator/sw/data/hg38-nanopore-sv-reference-20220505"
+        samples: [~{sample}]
+        normals: [~{normal}]
+        tumors: [~{tumor}]
+        ~{sample}: ~{samplefile}
+        EOT
+        >>>  
+    runtime {
+    memory:  "~{jobMemory} GB"
+    timeout: "~{timeout}"
+    }
+    output {
+    File config = "config.yaml"
+    }
+
+}
+    # ==========================================================
     # run the nanopore workflow to generate filtered fastq files
     # ==========================================================
     task filterFastq {
@@ -63,14 +105,14 @@ workflow nanoporeFilterFastq {
 
         parameter_meta {
         jobMemory: "memory allocated for Job"
-        modules: "Names and versions of modules"
         timeout: "Timeout in hours, needed to override imposed limits"
+        modules: "Names and versions of modules"
         }
 
         command <<<
-        set -euo pipefail
         module load nanopore-sv-analysis
         unset LD_LIBRARY_PATH
+        set -euo pipefail
         cp $NANOPORE_SV_ANALYSIS_ROOT/Snakefile .
         cp ~{config} .
         $NANOPORE_SV_ANALYSIS_ROOT/bin/snakemake  -j 8 --rerun-incomplete --keep-going --latency-wait 60  filter_fastq
@@ -78,8 +120,8 @@ workflow nanoporeFilterFastq {
 
     runtime {
     memory:  "~{jobMemory} GB"
-    modules: "~{modules}"
     timeout: "~{timeout}"
+    modules: "~{modules}"
     }
 
     output {
