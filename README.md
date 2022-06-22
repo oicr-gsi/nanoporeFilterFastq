@@ -24,8 +24,7 @@ Parameter|Value|Description
 `sample`|String|name of sample
 `normal`|String|name of the normal sample
 `tumor`|String|name of the tumor sample
-`samplefile`|String|sample file
-`smkConfig.generateConfig_modules`|String|modules needed to run generateConfig
+`samplefile`|File|sample file path
 `filterFastq.modules`|String|Names and versions of modules
 
 
@@ -37,8 +36,8 @@ Parameter|Value|Default|Description
 #### Optional task parameters:
 Parameter|Value|Default|Description
 ---|---|---|---
-`smkConfig.generateConfig_timeout`|Int|24|Timeout in hours, needed to override imposed limits
-`smkConfig.generateConfig_jobMemory`|Int|8|memory allocated for Job
+`generateConfig.jobMemory`|Int|8|memory allocated for Job
+`generateConfig.timeout`|Int|24|Timeout in hours, needed to override imposed limits
 `filterFastq.jobMemory`|Int|8|memory allocated for Job
 `filterFastq.timeout`|Int|24|Timeout in hours, needed to override imposed limits
 
@@ -50,7 +49,35 @@ Output | Type | Description
 `filteredFastq`|File|output from rule filter_fastq of the original workflow
 
 
-## Support
+## Commands
+ This section lists command(s) run by WORKFLOW workflow
+ 
+ * Running WORKFLOW
+ 
+ === Description here ===.
+ 
+ <<<
+         set -euo pipefail
+         cat <<EOT >> config.yaml
+         workflow_dir: "/.mounts/labs/gsi/modulator/sw/Ubuntu18.04/nanopore-sv-analysis-20220505"
+         conda_dir: "/.mounts/labs/gsi/modulator/sw/Ubuntu18.04/nanopore-sv-analysis-20220505/bin"
+         reference_dir: "/.mounts/labs/gsi/modulator/sw/data/hg38-nanopore-sv-reference-20220505"
+         samples: [~{sample}]
+         normals: [~{normal}]
+         tumors: [~{tumor}]
+         ~{sample}: ~{samplefile}
+         EOT
+         >>>
+ <<<
+         module load nanopore-sv-analysis
+         unset LD_LIBRARY_PATH
+         set -euo pipefail
+         cp $NANOPORE_SV_ANALYSIS_ROOT/Snakefile .
+         cp ~{config} .
+         $NANOPORE_SV_ANALYSIS_ROOT/bin/snakemake  -j 8 --rerun-incomplete --keep-going --latency-wait 60  filter_fastq
+         >>>
+ ## Support
 
 For support, please file an issue on the [Github project](https://github.com/oicr-gsi) or send an email to gsi@oicr.on.ca .
 
+_Generated with generate-markdown-readme (https://github.com/oicr-gsi/gsi-wdl-tools/)_

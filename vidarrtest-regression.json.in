@@ -13,13 +13,13 @@
                 }
             ]
         },
-        "type": "EXTERNAL"
+        "type": "EXTERNAL":
       },
       "nanoporeFilterFastq.sample": "MMinden_9161",
       "nanoporeFilterFastq.tumor": "MMinden_9161",
       "nanoporeFilterFastq.normal": "MMinden_9161",
-      "nanoporeFilterFastq.smkConfig.generateConfig_jobMemory": null,
-      "nanoporeFilterFastq.smkConfig.generateConfig_timeout":null, 
+      "nanoporeFilterFastq.generateConfig.jobMemory": null,
+      "nanoporeFilterFastq.generateConfig.timeout":null, 
       "nanoporeFilterFastq.filterFastq.modules": "conda/4.11.0",
       "nanoporeFilterFastq.filterFastq.timeout": null,
       "nanoporeFilterFastq.filterFastq.jobMemory": null   
