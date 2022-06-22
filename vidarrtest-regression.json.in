@@ -13,7 +13,7 @@
                 }
             ]
         },
-        "type": "EXTERNAL":
+        "type": "EXTERNAL"
       },
       "nanoporeFilterFastq.sample": "MMinden_9161",
       "nanoporeFilterFastq.tumor": "MMinden_9161",
