@@ -73,6 +73,7 @@ workflow smkConfig {
         cat <<EOT >> config.yaml
         workflow_dir: "/.mounts/labs/gsi/modulator/sw/Ubuntu18.04/nanopore-sv-analysis-20220505"
         conda_dir: "/.mounts/labs/gsi/modulator/sw/Ubuntu18.04/nanopore-sv-analysis-20220505/bin"
+        reference_dir: "/.mounts/labs/gsi/modulator/sw/data/hg38-nanopore-sv-reference-20220505"
         samples: [~{sample}]
         normals: [~{normal}]
         tumors: [~{tumor}]
