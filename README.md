@@ -44,19 +44,19 @@ Parameter|Value|Default|Description
 
 ### Outputs
 
-Output | Type | Description
----|---|---
-`filteredFastq`|File|output from rule filter_fastq of the original workflow
+Output | Type | Description | Labels
+---|---|---|---
+`filteredFastq`|File|output from rule filter_fastq of the original workflow|vidarr_label: filteredFastq 
 
 
 ## Commands
- This section lists command(s) run by WORKFLOW workflow
+This section lists command(s) run by nanoporefilterfastq workflow
  
- * Running WORKFLOW
+* Running nanoporefilterfastq
  
- === Description here ===.
+### Configure
  
- <<<
+```
          set -euo pipefail
          cat <<EOT >> config.yaml
          workflow_dir: "/.mounts/labs/gsi/modulator/sw/Ubuntu18.04/nanopore-sv-analysis-20220505"
@@ -67,16 +67,19 @@ Output | Type | Description
          tumors: [~{tumor}]
          ~{sample}: ~{samplefile}
          EOT
-         >>>
- <<<
+```
+ 
+### Run nanopore-sv analysis as a snakemake process
+ 
+```
          module load nanopore-sv-analysis
          unset LD_LIBRARY_PATH
          set -euo pipefail
          cp $NANOPORE_SV_ANALYSIS_ROOT/Snakefile .
          cp ~{config} .
          $NANOPORE_SV_ANALYSIS_ROOT/bin/snakemake  -j 8 --rerun-incomplete --keep-going --latency-wait 60  filter_fastq
-         >>>
- ## Support
+```
+## Support
 
 For support, please file an issue on the [Github project](https://github.com/oicr-gsi) or send an email to gsi@oicr.on.ca .
 
