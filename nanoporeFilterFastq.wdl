@@ -42,9 +42,12 @@ workflow nanoporeFilterFastq {
         url: "https://gitlab.oicr.on.ca/ResearchIT/modulator/-/blob/master/code/gsi/70_nanopore_sv_analysis.yaml"
       }
      ]
-     output_meta: {
-       filteredFastq : "output from rule filter_fastq of the original workflow"
-     }
+    output_meta: {
+    filteredFastq : {
+        description: "output from rule filter_fastq of the original workflow",
+        vidarr_label: "filteredFastq "
+    }
+}
     }
 }
 
