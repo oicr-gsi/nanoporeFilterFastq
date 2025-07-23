@@ -1,11 +1,11 @@
 [
   {
-    "id": "TEST_MMinden_9161_FASTQ_INPUT",
+    "id": "TEST_MMinden_FASTQ_INPUT",
     "description": "runs the nanoporeFilterFastq workflow, with nanopore fastq as input",
     "arguments": {
       "nanoporeFilterFastq.samplefile": {
         "contents": {
-            "configuration": "/.mounts/labs/gsi/testdata/nanoporeFilterFastq/input_data/MMinden_9161.fastq",
+            "configuration": "/.mounts/labs/gsi/testdata/nanoporefilterfastq/test_inputs/MMinden_Test.fastq",
             "externalIds": [
                 {
                     "id": "TEST",
@@ -15,9 +15,9 @@
         },
         "type": "EXTERNAL"
       },
-      "nanoporeFilterFastq.sample": "MMinden_9161",
-      "nanoporeFilterFastq.tumor": "MMinden_9161",
-      "nanoporeFilterFastq.normal": "MMinden_9161",
+      "nanoporeFilterFastq.sample": "MMinden_Test",
+      "nanoporeFilterFastq.tumor": "MMinden_Test",
+      "nanoporeFilterFastq.normal": "MMinden_Test",
       "nanoporeFilterFastq.generateConfig.jobMemory": null,
       "nanoporeFilterFastq.generateConfig.timeout":null, 
       "nanoporeFilterFastq.filterFastq.modules": "conda/4.11.0",
@@ -32,7 +32,7 @@
       "nanoporeFilterFastq.filteredFastq": {
         "contents": [
           {
-            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_nanoporeFilterFastq_TEST_MMinden_9161_FASTQ_INPUT@JENKINSID@"
+            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_nanoporeFilterFastq_TEST_MMinden_FASTQ_INPUT@JENKINSID@"
           }
         ],
         "type": "ALL"
@@ -42,7 +42,7 @@
       {
         "metrics_calculate": "@CHECKOUT@/tests/calculate.sh",
         "metrics_compare": "@CHECKOUT@/tests/compare.sh",
-        "output_metrics": "/.mounts/labs/gsi/testdata/nanoporeFilterFastq/output_expectation/filterFastq_MMinden_9161_FASTQ.metrics",
+        "output_metrics": "/.mounts/labs/gsi/testdata/nanoporefilterfastq/output_metrics/workflow_test_01.metrics",
         "type": "script"
       }
     ]
